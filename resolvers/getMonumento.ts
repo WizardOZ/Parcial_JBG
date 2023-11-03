@@ -10,16 +10,11 @@ const getMonumento = async (req: Request, res: Response) => {
         res.status(404).send("Monumento not found");
         return;
         }
-        const response = await fetch(
-            `http://worldtimeapi.org/api/timezone/${monumento.ISO}`
-          );
-          const zipJSON = await response.json();
-
-          const ciudad = zipJSON.ciudad;
+        
+          
         res.status(200).send({
             nombre: monumento.nombre,
             ISO: monumento.ISO,
-            ciudad: ciudad,
             id: monumento._id.toString(),
           });
 

@@ -14,8 +14,13 @@ const addMonumento = async (req: Request, res: Response) => {
         res.status(400).send("Monumento already exists");
         return;
         }
-
-        const newMonumento = new MonumentoModel({ nombre, descripcion, CP , ISO});
+        const ciudad = await fetch(
+            `https://zip-api.eu/api/v1/info/${ISO}-${CP}`
+          );
+          const continente = await fetch(
+            `https://restcountries.com/v3.1/capital/${ciudad}?fields=region`
+          );
+        const newMonumento = new MonumentoModel({ nombre, descripcion, CP , ISO, ciudad, continente});
         await newMonumento.save();
 
         res.status(200).send({
@@ -23,6 +28,8 @@ const addMonumento = async (req: Request, res: Response) => {
             descripcion: newMonumento.descripcion,
             CP: newMonumento.CP,
             ISO : newMonumento.ISO,
+            ciudad : newMonumento.ciudad,
+            continente : newMonumento.continente,
             id: newMonumento._id.toString(),
           });
     }
