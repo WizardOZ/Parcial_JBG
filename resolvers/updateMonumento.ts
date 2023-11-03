@@ -9,7 +9,7 @@ const updateMonumento = async (req: Request, res: Response) => {
         const { id } = req.params;
         const { nombre, descripcion, CP, ISO } = req.body;
         if (!descripcion || !nombre || !CP || !ISO) {
-            res.status(400).send("Nombre, desscripcion, Cp and ISO are required");
+            res.status(400).send("Nombre, desscripcion, CP and ISO are required");
             return;
           }
 

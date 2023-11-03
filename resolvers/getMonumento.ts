@@ -13,13 +13,7 @@ const getMonumento = async (req: Request, res: Response) => {
         
         res.status(200).send({
             nombre: monumento.nombre,
-            descripcion: monumento.descripcion,
-            CP: monumento.CP,
             ISO: monumento.ISO,
-            ciudad: monumento.ciudad,
-            continente: monumento.continente,
-            hora: monumento.hora,
-            tiempo: monumento.tiempo,
             id: monumento._id.toString(),
           });
 
