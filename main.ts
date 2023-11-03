@@ -35,9 +35,10 @@ const app = express();
 app.use(express.json());
 app
   .get("/getMonumento", getMonumento)
+  .get("/getMonumento/:id", getMonumento)
   .post("/addMonumento", addMonumento)
-  .put("/updateMumento", updateMonumento)
-  .delete("/deleteMonumento", deleteMonumento);
+  .put("/updateMumento/:id", updateMonumento)
+  .delete("/deleteMonumento/:id", deleteMonumento);
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
