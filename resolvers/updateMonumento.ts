@@ -1,7 +1,7 @@
 // Imports :
 import { Request, Response } from "npm:express@4.18.2";
 
-const getMonumento = async (req: Request, res: Response) => {
+const updateMonumento = async (req: Request, res: Response) => {
     try {
         
     }
@@ -11,4 +11,4 @@ const getMonumento = async (req: Request, res: Response) => {
     }
 };
 
-export default getMonumento;
+export default updateMonumento;
