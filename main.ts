@@ -3,10 +3,10 @@ import express from "npm:express@4.18.2"
 import mongoose from "npm:mongoose@7.6.3";
 
 
-import get from "./resolvers/get.ts";
-import add from "./resolvers/add.ts";
-import update from "./resolvers/update.ts";
-import delete from "./resolvers/delete.ts";
+import getMonumento from "./resolvers/getMonumento.ts";
+import addMonumento from "./resolvers/addMonumento.ts";
+import updateMonumento from "./resolvers/updateMonumento.ts";
+import deleteMonumento from "./resolvers/deleteMonumento.ts";
 
 
 // Importamos la funcion load de las bibliotecas de Deno
@@ -34,10 +34,10 @@ console.info("Connected with Mongo.");
 const app = express();
 app.use(express.json());
 app
-  .get("/get", get)
-  .post("/add", add)
-  .put("/update", update)
-  .delete("/delete", delete);
+  .get("/getMonumento", getMonumento)
+  .post("/addMonumento", addMonumento)
+  .put("/updateMumento", updateMonumento)
+  .delete("/deleteMonumento", deleteMonumento);
 
 app.listen(3000, () => {
   console.log("Server listening on port 3000");
