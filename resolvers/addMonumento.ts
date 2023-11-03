@@ -9,11 +9,11 @@ const addMonumento = async (req: Request, res: Response) => {
         res.status(400).send("Nombre, descripcion y CP are required");
         return;
         }
-        const alreadyExists = await MonumentoModel.findOne({ nombre }).exec();
+        /*const alreadyExists = await MonumentoModel.findOne({ nombre }).exec();
         if (alreadyExists) {
         res.status(400).send("Monumento already exists");
         return;
-        }
+        }*/
 
         const newMonumento = new MonumentoModel({ nombre, descripcion, CP });
         await newMonumento.save();
