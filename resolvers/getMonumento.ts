@@ -10,7 +10,7 @@ const getMonumento = async (req: Request, res: Response) => {
         res.status(404).send("Monumento not found");
         return;
         }
-        monumento.hora = curl "http://worldtimeapi.org/api/timezone/America/Argentina/Salta";
+        
         res.status(200).send({
             nombre: monumento.nombre,
             descripcion: monumento.descripcion,
