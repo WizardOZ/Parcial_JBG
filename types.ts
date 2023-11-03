@@ -1,7 +1,7 @@
 export type Monumento = {
     nombre : string;
     descripcion: string;
-    CP : string;
+    CP : number;
     ISO: string;
     ciudad: string;
     continente: string;
