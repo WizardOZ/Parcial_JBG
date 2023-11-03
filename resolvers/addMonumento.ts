@@ -6,7 +6,7 @@ const addMonumento = async (req: Request, res: Response) => {
     try {
         const { nombre, descripcion, CP, ISO } = req.body;
         if (!nombre || !descripcion || !CP || !ISO) {
-        res.status(400).send("Nombre, descripcion y CP are required");
+        res.status(400).send("Nombre, descripcion ,CP and ISO are required");
         return;
         }
         const alreadyExists = await MonumentoModel.findOne({ nombre }).exec();
