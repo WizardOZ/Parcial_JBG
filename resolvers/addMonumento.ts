@@ -4,24 +4,25 @@ import MonumentoModel from "../db/Monumento.ts";
 
 const addMonumento = async (req: Request, res: Response) => {
     try {
-        const { nombre, descripcion, CP } = req.body;
-        if (!nombre || !descripcion || !CP) {
+        const { nombre, descripcion, CP, ISO } = req.body;
+        if (!nombre || !descripcion || !CP || !ISO) {
         res.status(400).send("Nombre, descripcion y CP are required");
         return;
         }
-        /*const alreadyExists = await MonumentoModel.findOne({ nombre }).exec();
+        const alreadyExists = await MonumentoModel.findOne({ nombre }).exec();
         if (alreadyExists) {
         res.status(400).send("Monumento already exists");
         return;
-        }*/
+        }
 
-        const newMonumento = new MonumentoModel({ nombre, descripcion, CP });
+        const newMonumento = new MonumentoModel({ nombre, descripcion, CP , ISO});
         await newMonumento.save();
 
         res.status(200).send({
             nombre: newMonumento.nombre,
             descripcion: newMonumento.descripcion,
             CP: newMonumento.CP,
+            ISO : newMonumento.ISO,
             id: newMonumento._id.toString(),
           });
     }
