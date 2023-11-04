@@ -12,7 +12,7 @@ const monumentoSchema = new Schema(
     ciudad: {type: String, required: false},
     continente: {type: String, required: false},
     hora: {type: String, required: false},
-    tiempo: {type: String, required: false},
+    tiempo: {type: Array, required: false},
   },
   { timestamps: true }
 );

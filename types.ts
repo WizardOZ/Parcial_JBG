@@ -6,5 +6,5 @@ export type Monumento = {
     ciudad: string;
     continente: string;
     hora: string;
-    tiempo: string;
+    tiempo: [];
 }

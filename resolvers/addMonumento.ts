@@ -14,13 +14,32 @@ const addMonumento = async (req: Request, res: Response) => {
         res.status(400).send("Monumento already exists");
         return;
         }
-        const ciudad = await fetch(
-            `https://zip-api.eu/api/v1/info/${ISO}-${CP}`
+        const response = await fetch(
+            `https://zip-api.eu/api/v1/info/${ISO}-${CP}?fields=place_name`
           );
-          const continente = await fetch(
+          const ciudad = await response.json();
+
+          const responses = await fetch(
             `https://restcountries.com/v3.1/capital/${ciudad}?fields=region`
           );
-        const newMonumento = new MonumentoModel({ nombre, descripcion, CP , ISO, ciudad, continente});
+          let continente = await responses.json();
+           continente = continente[0].region;
+         
+
+          const responsees = await fetch(
+            `https://worldtimeapi.org/api/timezone/Europe/Madrid`
+          );
+          let hora = await responsees.json();
+           hora = hora.datetime;
+
+           const responseess = await fetch(
+            `https://api.weatherapi.com/v1/current.json?key=b555e744249649bca82141530230411&q=London&aqi=no`
+          );
+          let tiempo = await responseess.json();
+           
+           tiempo = tiempo.current;
+
+          const newMonumento = new MonumentoModel({ nombre, descripcion, CP , ISO, ciudad, continente,hora,tiempo});
         await newMonumento.save();
 
         res.status(200).send({
@@ -28,8 +47,10 @@ const addMonumento = async (req: Request, res: Response) => {
             descripcion: newMonumento.descripcion,
             CP: newMonumento.CP,
             ISO : newMonumento.ISO,
-            ciudad : newMonumento.ciudad,
-            continente : newMonumento.continente,
+            Ciudad : newMonumento.ciudad,
+            Continente : newMonumento.continente,
+            Hora : newMonumento.hora,
+            Tiempo: newMonumento.tiempo,
             id: newMonumento._id.toString(),
           });
     }
